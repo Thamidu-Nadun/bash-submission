@@ -1,0 +1,20 @@
+{
+  "company": {
+    "department": {
+      "@name": "Engineering",
+      "team": [
+        {
+          "@name": "Backend",
+          "member": [
+            "Alice",
+            "Bob"
+          ]
+        },
+        {
+          "@name": "Frontend",
+          "member": "Charlie"
+        }
+      ]
+    }
+  }
+}
