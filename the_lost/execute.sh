@@ -1,44 +1,24 @@
 #!/bin/bash
-#!/bin/bash
 set -e
 
-install_jq() {
-    echo "jq not found. Installing jq..."
-    if command -v apt &> /dev/null; then
-        sudo apt update && sudo apt install -y jq
-    elif command -v yum &> /dev/null; then
-        sudo yum install -y jq
+install_xml2json(){
+    if ! command -v xml2json &> /dev/null; then
+        echo "xml2json could not be found, installing..."
+        npm i -g xml2json-cli
     else
-        echo "Unsupported package manager. Please install jq manually."
-        exit 1
+        echo "xml2json is already installed."
     fi
 }
 
-install_xq() {
-    echo "xq not found. Installing yq (provides xq)..."
-    if command -v pip3 &> /dev/null; then
-        pip3 install --user yq
-    elif command -v pip &> /dev/null; then
-        pip install --user yq
-    else
-        echo "pip not found. Please install Python3 and pip first."
-        exit 1
-    fi
-    export PATH="$HOME/.local/bin:$PATH"
-}
-
-if ! command -v jq &> /dev/null; then
-    install_jq
-fi
-
-if ! command -v xq &> /dev/null; then
-    install_xq
+if ! command -v xml2json &> /dev/null; then
+    echo "xml2json is not installed. Attempting to install..."
+    install_xml2json
+    exit 1
 fi
 
 mkdir -p ./out
 XML_FILE="./src/data.xml"
 JSON_FILE="./out/output.json"
 
-xq . "$XML_FILE" > "$JSON_FILE"
+xml2json $XML_FILE $JSON_FILE
 echo "Converted $XML_FILE → $JSON_FILE"
-
