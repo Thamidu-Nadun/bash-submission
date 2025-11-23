@@ -1,8 +1,30 @@
-#!/bin/bash
-file="./src/archive.tar.gz"
+#!/usr/bin/env bash
+#!/usr/bin/env bash
+set -e
 
-gunzip -c "$file" | tar -xvf - -C ./src
-gunzip -c "./src/level2.tar.gz" | tar -xvf - -C ./src
-gunzip -c "./src/level3.tar.gz" | tar -xvf - -C ./src
+DIR="./src"
+ARCHIVE="$DIR/archive.tar.gz"
 
-cat ./src/treasure.txt
+gunzip -c "$ARCHIVE" | tar -xC "$DIR"
+
+while true; do
+
+    # Stop at treasure.txt
+    if [[ -f "$DIR/treasure.txt" ]]; then
+        break
+    fi
+
+    NEXT=$(find "$DIR" -maxdepth 1 -name "*.tar.gz" ! -name "archive.tar.gz" | head -n 1)
+
+    if [[ -z "$NEXT" ]]; then
+        echo "Error: treasure not found."
+        exit 1
+    fi
+
+    gunzip -c "$NEXT" | tar -xC "$DIR"
+
+    rm "$NEXT"
+done
+
+cat "$DIR/treasure.txt"
+
