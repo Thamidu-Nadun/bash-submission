@@ -7,5 +7,6 @@ echo "" > $OUTPUT_PATH
 
 for file in $(find $ROOT_PATH -type f); do
     checksum=$(md5sum "$file" | awk '{ print $1 }')
-    echo "$checksum $file" >> $OUTPUT_PATH
+    F=${file#"$ROOT_PATH"/}
+    echo "$checksum $F" >> $OUTPUT_PATH
 done

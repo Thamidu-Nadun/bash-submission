@@ -1,4 +1,4 @@
 
-0217fb7380c448dbfb60418d21ebfbaa ./src/file1.txt
-d83c6c3b0046701b126b88026bb90672 ./src/subdir1/file2.txt
-e0ea4a13d773ac285bbf7b98a2f38101 ./src/subdir2/file3.txt
+0217fb7380c448dbfb60418d21ebfbaa file1.txt
+d83c6c3b0046701b126b88026bb90672 subdir1/file2.txt
+e0ea4a13d773ac285bbf7b98a2f38101 subdir2/file3.txt
