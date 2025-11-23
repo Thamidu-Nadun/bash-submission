@@ -19,8 +19,8 @@ psql -h $DB_HOST -p $DB_PORT -U $DB_USER -d $DB_NAME -c \
 
 echo "[+] Database and table setup complete."
 
-gcc -o insert_vectors insert_vectors.c -lpq
+gcc -I/usr/include/postgresql -o inserter inserter.c -lpq
 
-./insert_vectors
+./src/inserter
 
 echo "[+] Inserted sample vectors into the database."
