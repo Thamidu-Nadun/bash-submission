@@ -1,0 +1,15 @@
+# API Phantom
+
+In the ethereal realm where data floats freely across networks, a phantom seeks knowledge of the financial markets. Your mission is to commune with the CoinGecko API—a public oracle of cryptocurrency prices—and retrieve the current price of Bitcoin in USD. The API endpoint whispers at: https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd Your bash script must reach across the digital void, call upon this endpoint, parse the JSON response, and extract only the numerical price value (without the currency symbol or any JSON formatting).
+
+## Example Output
+  45230.50
+
+## Constraints
+- The script must be purely written in bash within the execute.sh file
+
+- You must fetch data from the CoinGecko API
+
+- Extract and output only the price number (no JSON structure, no currency symbols)
+
+
